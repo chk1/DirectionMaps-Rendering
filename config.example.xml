@@ -1,0 +1,6 @@
+<Parameter name="type">postgis</Parameter>
+<Parameter name="dbname">postgres</Parameter>
+<Parameter name="port">5432</Parameter>
+<Parameter name="user">postgres</Parameter>
+<Parameter name="password">postgres</Parameter>
+<Parameter name="host">localhost</Parameter>

@@ -1,0 +1,7 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.6319,51.9577],[7.6315,51.9574]]]},"properties":{"osm_id":304817299},"id":"fid-c484ae0_151b18950da_-8000"},
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.6311,51.9626],[7.6305,51.9628]]]},"properties":{"osm_id":40814163},"id":"fid-c484ae0_151b18950da_-7fff"},
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.6179,51.9666],[7.6176,51.9665]]]},"properties":{"osm_id":84715471},"id":"fid-c484ae0_151b18950da_-7ffe"},
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.5555,51.9847],[7.5643,51.9932]]]},"properties":{"osm_id":292686945},"id":"fid-c484ae0_151b18950da_-7e99"},
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.5636,51.9094],[7.5636,51.9096]]]},"properties":{"osm_id":27679580},"id":"fid-c484ae0_151b18950da_-7e98"},
+{"type":"Feature","geometry":{"type":"MultiLineString","coordinates":[[[7.5634,51.9155],[7.5688,51.9157]]]},"properties":{"osm_id":282512657},"id":"fid-c484ae0_151b18950da_-7e97"}]}
