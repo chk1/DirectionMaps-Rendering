@@ -26,7 +26,7 @@ with open('config.xml') as data_file:
 conn = psycopg2.connect(dbname=e[1].text, port=e[2].text, user=e[3].text, password=e[4].text, host=e[5].text)
 cur = conn.cursor()
 
-with open('data/shortgeojson.json') as data_file: 
+with open('data/geojson.json') as data_file: 
 	json_with_attr_added = json.load(data_file, object_hook = addAttribute)
 	#print json_with_attr_added
 	with open('data/result.geojson', 'w') as fp:
