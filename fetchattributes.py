@@ -6,6 +6,7 @@ import json
 from pprint import pprint
 import psycopg2
 import xml.etree.ElementTree as ET
+import sys
 
 # Fetch data from a database
 def getAttribute(osm_id):
@@ -16,6 +17,7 @@ def getAttribute(osm_id):
 def addAttribute(dataPart):
 	if dataPart.has_key('osm_id'):
 		dataPart['type'] = '%s' % getAttribute(dataPart['osm_id'])
+		print dataPart['osm_id']
 	return dataPart
 
 # read the XML database config
@@ -26,9 +28,15 @@ with open('config.xml') as data_file:
 conn = psycopg2.connect(dbname=e[1].text, port=e[2].text, user=e[3].text, password=e[4].text, host=e[5].text)
 cur = conn.cursor()
 
-with open('data/geojson.json') as data_file: 
+# first command line arguemnt specifies input & output directory
+dir = '.'
+#if sys.argv[1:][0] != None:
+#	dir = sys.argv[1:][0]
+
+with open('%s/data/roads.json'%dir) as data_file: 
+	print dir
 	json_with_attr_added = json.load(data_file, object_hook = addAttribute)
 	#print json_with_attr_added
-	with open('data/result.geojson', 'w') as fp:
+	with open('%s/data/roads-with-type.json'%dir, 'w') as fp:
 		json.dump(json_with_attr_added, fp)
 	#print json.dumps(json_with_attr_added)
