@@ -112,11 +112,11 @@ conn = psycopg2.connect(dbname=e[1].text, port=e[2].text, user=e[3].text, passwo
 cur = conn.cursor()
 
 if len(sys.argv) >= 5:
-	start_lat        = sys.argv[1:][1]
-	start_lon        = sys.argv[1:][2]
-	input_dir        = sys.argv[1:][3]
-	output_file      = sys.argv[1:][4]
-	input_filesuffix = sys.argv[1:][5]
+	start_lat        = sys.argv[1:][0]
+	start_lon        = sys.argv[1:][1]
+	input_dir        = sys.argv[1:][2]
+	output_file      = sys.argv[1:][3]
+	input_filesuffix = sys.argv[1:][4]
 	print sys.argv
 	fetchAttributes(input_dir, input_filesuffix)
 	renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix)
