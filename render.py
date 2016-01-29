@@ -19,7 +19,7 @@ output_file = './data/map.png' # output file name and location
 def renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix):
 	destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "destination_pt" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lat,destination_lon)
 
-	with open(input_dir+'/destination.geojson', 'w+') as f:
+	with open('%s/destination%s.geojson'%(input_dir, input_filesuffix), 'w+') as f:
 		read_data = f.write(destination)
 
 	mapfile = 'map.xml'
@@ -37,7 +37,7 @@ def renderMap(destination_lat, destination_lon, input_dir, output_file, input_fi
 	shadow_roads.srs = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
 	shadow_roads.datasource = shadow_roads_datasource
 
-	landmarks_datasource = Ogr(file='%s/landmarks.json'%(input_dir),layer_by_index=0) #,layer='OGRGeoJSON'
+	landmarks_datasource = Ogr(file='%s/landmarks%s.json'%(input_dir, input_filesuffix),layer_by_index=0) #,layer='OGRGeoJSON'
 	landmarks = Layer('landmarks')
 	landmarks.srs = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
 	landmarks.datasource = landmarks_datasource
@@ -111,12 +111,13 @@ with open('config.xml') as data_file:
 conn = psycopg2.connect(dbname=e[1].text, port=e[2].text, user=e[3].text, password=e[4].text, host=e[5].text)
 cur = conn.cursor()
 
-if len(sys.argv) == 5:
-	start_lat        = sys.argv[1:][0]
-	start_lon        = sys.argv[1:][1]
-	input_dir        = sys.argv[1:][2]
-	output_file      = sys.argv[1:][3]
-	input_filesuffix = sys.argv[1:][4]
+if len(sys.argv) >= 5:
+	start_lat        = sys.argv[1:][1]
+	start_lon        = sys.argv[1:][2]
+	input_dir        = sys.argv[1:][3]
+	output_file      = sys.argv[1:][4]
+	input_filesuffix = sys.argv[1:][5]
+	print sys.argv
 	fetchAttributes(input_dir, input_filesuffix)
 	renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix)
 else:
