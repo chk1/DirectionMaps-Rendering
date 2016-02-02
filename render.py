@@ -17,7 +17,7 @@ input_filesuffix = '' # roadsXXX.json / landmarksXXX.json where XXX is the suffi
 output_file = './data/map.png' # output file name and location
 
 def renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix):
-	destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "destination_pt" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lat,destination_lon)
+	destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "destination_pt" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lon,destination_lat)
 
 	with open('%s/destination%s.geojson'%(input_dir, input_filesuffix), 'w+') as f:
 		read_data = f.write(destination)
@@ -112,8 +112,8 @@ conn = psycopg2.connect(dbname=e[1].text, port=e[2].text, user=e[3].text, passwo
 cur = conn.cursor()
 
 if len(sys.argv) >= 5:
-	start_lat        = sys.argv[1:][0]
-	start_lon        = sys.argv[1:][1]
+	destination_lat  = sys.argv[1:][0]
+	destination_lon  = sys.argv[1:][1]
 	input_dir        = sys.argv[1:][2]
 	output_file      = sys.argv[1:][3]
 	input_filesuffix = sys.argv[1:][4]

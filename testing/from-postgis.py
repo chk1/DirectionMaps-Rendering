@@ -79,5 +79,6 @@ m.zoom_to_box(extent)
 #m.zoom_all()
 
 mapnik.render_to_file(m, 'from-postgis.png', 'png') # save the image
+mapnik.save_map(m, "huehu.xml")
 
 exit()
