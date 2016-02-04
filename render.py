@@ -25,7 +25,7 @@ Reading GeoJSON via OGR might cause Segmentation Fault on some OS configurations
 def renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix):
 	# write the destination point file only if not already created by NodeJS server	
 	destination_point_file_path = '%s/destination%s.geojson'%(input_dir, input_filesuffix)
-	if !os.path.isfile(destination_point_file_path):
+	if os.path.isfile(destination_point_file_path) == False:
 		destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "This is your destination" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lon,destination_lat)
 		with open(destination_point_file_path, 'w+') as f:
 			read_data = f.write(destination)
