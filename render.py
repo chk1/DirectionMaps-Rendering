@@ -17,7 +17,7 @@ input_filesuffix = '' # roadsXXX.json / landmarksXXX.json where XXX is the suffi
 output_file = './data/map.png' # output file name and location
 
 def renderMap(destination_lat, destination_lon, input_dir, output_file, input_filesuffix):
-	destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "destination_pt" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lon,destination_lat)
+	destination = '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": { "ref": "destination_pt", "name": "This is your destination" }, "geometry": {"type": "Point", "coordinates": [%s, %s] } } ] }'%(destination_lon,destination_lat)
 
 	with open('%s/destination%s.geojson'%(input_dir, input_filesuffix), 'w+') as f:
 		read_data = f.write(destination)
@@ -29,6 +29,7 @@ def renderMap(destination_lat, destination_lon, input_dir, output_file, input_fi
 
 	destination_roads_datasource = Ogr(file='%s/roads_with_type%s.json'%(input_dir, input_filesuffix),layer_by_index=0) #,layer='OGRGeoJSON'
 	destination_roads = Layer('destination roads')
+	destination_roads.cache_features = True
 	destination_roads.srs = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
 	destination_roads.datasource = destination_roads_datasource
 
@@ -42,32 +43,29 @@ def renderMap(destination_lat, destination_lon, input_dir, output_file, input_fi
 	landmarks.srs = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
 	landmarks.datasource = landmarks_datasource
 
-	destination_datasource = Ogr(file='%s/destination%s.geojson'%(input_dir, input_filesuffix),layer_by_index=0) #,layer='OGRGeoJSON'
+	destination_datasource = Ogr(file='%s/destination%s.geojson'%(input_dir, input_filesuffix),layer_by_index=0,) #,layer='OGRGeoJSON'
 	destination = Layer('destination point')
 	destination.srs = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
 	destination.datasource = destination_datasource
 
+	style_shadows    = m.find_style('shadows')
 	style_autobahn   = m.find_style('autobahn')
 	style_shields    = m.find_style('shields')
-	style_streettext = m.find_style('streettext')
 	style_streets    = m.find_style('streets')
 	style_landmarks  = m.find_style('landmarks')
-	style_shadows    = m.find_style('shadows')
 
+	m.append_style('shadows',   style_shadows)
 	m.append_style('autobahn',  style_autobahn)
-	m.append_style('shields',   style_shields)
-	m.append_style('streettext',style_streettext)
 	m.append_style('streets',   style_streets)
 	m.append_style('landmarks', style_landmarks)
-	m.append_style('shadows',   style_shadows)
+	m.append_style('shields',   style_shields)
 
+	shadow_roads.styles.append('shadows')
 	destination_roads.styles.append('autobahn')
-	destination_roads.styles.append('shields')
-	destination_roads.styles.append('streettext')
 	destination_roads.styles.append('streets')
 	landmarks.styles.append('landmarks')
 	destination.styles.append('landmarks')
-	shadow_roads.styles.append('shadows')
+	destination_roads.styles.append('shields')
 
 	m.layers.append(shadow_roads)
 	m.layers.append(destination_roads)
@@ -94,8 +92,6 @@ def addAttribute(dataPart):
 		if this_type == "":
 			this_type = "None"
 		dataPart['type'] = '%s' % this_type
-		#print dataPart['osm_id']
-		#print dataPart['type']
 	return dataPart
 
 def fetchAttributes(input_dir, input_filesuffix):
