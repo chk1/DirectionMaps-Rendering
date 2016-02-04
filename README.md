@@ -14,6 +14,11 @@ OSM data extracts can be obtained from [bbbike](http://download.bbbike.org/osm/e
 
 A nice tutorial on how to install pgRouting and prepare the data for import can be found on the [ZevRoss blog](http://zevross.com/blog/2014/06/18/first-taste-of-routing-in-postgis-using-pgrouting/).
 
+### Using this
+
+We are providing a [Dockerfile](https://github.com/chk1/DirectionMaps-web) that you can check out. You will also need a database populated with OSM and Pgrouting data.
+
 ### Attribution
 
 PNG imagery in "symbols" folder is derived from either OpenStreetMap Carto or Wikimedia Commons, all licensed under CC0/Public Domain.
+
