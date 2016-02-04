@@ -26,17 +26,19 @@
       <PointSymbolizer file="symbols/shopping_car.p.16.png" allow-overlap="true" ignore-placement="true"/>
     </Rule>
     <Rule>
-      <Filter>[ref] = "destination_pt"</Filter>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" size="13" fill="#000000" placement="point" file="symbols/shields/leader.svg" transform="scale(0.6,0.6)" shield-dy="0" shield-dx="55" minimum-padding="50" halo-fill="#ffffff" halo-radius="3"></ShieldSymbolizer>
-      <TextSymbolizer face-name="DejaVu Sans Bold" size="17" placement="point" fill="#bb0000" halo-fill="#ffffff" halo-radius="2" allow-overlap="true" dx="28" dy="-25">[name]</TextSymbolizer>
-    </Rule>
-    <Rule>
       <Filter>[ref] = "castle" || [ref] = "university"</Filter>
       <PointSymbolizer file="symbols/school.png" allow-overlap="true" ignore-placement="true"/>
     </Rule>
     <Rule>
       <Filter>[ref] = "museum"</Filter>
       <PointSymbolizer file="symbols/museum.p.16.png" allow-overlap="true" ignore-placement="true"/>
+    </Rule>
+  </Style>
+
+  <Style name="dest">
+    <Rule>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" size="13" fill="#000000" placement="point" file="symbols/shields/leader.svg" transform="scale(0.6,0.6)" shield-dy="0" shield-dx="55" minimum-padding="50" halo-fill="#ffffff" halo-radius="3"></ShieldSymbolizer>
+      <TextSymbolizer face-name="DejaVu Sans Bold" size="17" placement="point" fill="#bb0000" halo-fill="#ffffff" halo-radius="2" allow-overlap="true" dx="28" dy="-25">[name]</TextSymbolizer>
     </Rule>
   </Style>
 
