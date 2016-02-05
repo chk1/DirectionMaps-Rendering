@@ -64,12 +64,12 @@ def renderMap(destination_lat, destination_lon, input_dir, output_file, input_fi
 	destination.datasource = destination_datasource
 
 	# add the styling that we got from map.xml to the map
-	style_shadows    = m.find_style('shadows')
-	style_autobahn   = m.find_style('autobahn')
-	style_shields    = m.find_style('shields')
-	style_streets    = m.find_style('streets')
-	style_landmarks  = m.find_style('landmarks')
-	style_destination= m.find_style('dest')
+	style_shadows     = m.find_style('shadows')
+	style_autobahn    = m.find_style('autobahn')
+	style_shields     = m.find_style('shields')
+	style_streets     = m.find_style('streets')
+	style_landmarks   = m.find_style('landmarks')
+	style_destination = m.find_style('dest')
 
 	# apply styles to map & layers, the ordering is important to not get wrong overlap
 	m.append_style('shadows',   style_shadows)
@@ -77,7 +77,7 @@ def renderMap(destination_lat, destination_lon, input_dir, output_file, input_fi
 	m.append_style('streets',   style_streets)
 	m.append_style('landmarks', style_landmarks)
 	m.append_style('shields',   style_shields)
-	m.append_style('dest',   style_shields)
+	m.append_style('dest',      style_destination)
 
 	shadow_roads.styles.append('shadows')
 	destination_roads.styles.append('autobahn')

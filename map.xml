@@ -37,8 +37,8 @@
 
   <Style name="dest">
     <Rule>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" size="13" fill="#000000" placement="point" file="symbols/shields/leader.svg" transform="scale(0.6,0.6)" shield-dy="0" shield-dx="55" minimum-padding="50" halo-fill="#ffffff" halo-radius="3"></ShieldSymbolizer>
-      <TextSymbolizer face-name="DejaVu Sans Bold" size="17" placement="point" fill="#bb0000" halo-fill="#ffffff" halo-radius="2" allow-overlap="true" dx="28" dy="-25">[name]</TextSymbolizer>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" size="13" fill="#000000" placement="point" file="symbols/shields/leaderleft.svg" transform="scale(0.6,0.6)" shield-dy="0" shield-dx="-55" minimum-padding="50" halo-fill="#ffffff" halo-radius="3"></ShieldSymbolizer>
+      <TextSymbolizer face-name="DejaVu Sans Bold" size="17" placement="point" fill="#bb0000" halo-fill="#ffffff" halo-radius="2" allow-overlap="true" dx="-28" dy="-20">[name]</TextSymbolizer>
     </Rule>
   </Style>
 
